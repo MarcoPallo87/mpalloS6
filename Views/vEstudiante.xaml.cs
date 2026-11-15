@@ -6,27 +6,41 @@ namespace mpalloS6.Views;
 
 public partial class vEstudiante : ContentPage
 {
-	private const string Url = "http://192.168.56.1:8080/ws_estudiante/estudiante_ws.php";
-	private readonly HttpClient _cliente = new HttpClient();
-	private ObservableCollection<estudiante> _estudiante;
+    private const string Url = "http://192.168.56.1:8080/ws_estudiante/estudiante_ws.php";
+    private readonly HttpClient _cliente = new HttpClient();
+    private ObservableCollection<estudiante> _estudiante;
 
     public vEstudiante()
-	{
-		InitializeComponent();
-		MostrarEstudiante();
-
+    {
+        InitializeComponent();
+        MostrarEstudiante();
     }
 
-	public async void MostrarEstudiante()
-	{
-		var content = await _cliente.GetStringAsync(Url);
-		List<estudiante> _mostrar = JsonConvert.DeserializeObject<List<estudiante>>(content);
-		_estudiante = new ObservableCollection<estudiante>(_mostrar);
-		listaEstudiante.ItemsSource = _estudiante;
-	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        MostrarEstudiante();
+    }
+
+    public async void MostrarEstudiante()
+    {
+        var content = await _cliente.GetStringAsync(Url);
+        List<estudiante> _mostrar = JsonConvert.DeserializeObject<List<estudiante>>(content);
+        _estudiante = new ObservableCollection<estudiante>(_mostrar);
+        listaEstudiante.ItemsSource = _estudiante;
+    }
 
     private void btnAgregarEstudiante_Clicked(object sender, EventArgs e)
     {
-		Navigation.PushAsync(new vAgrergarEstudiante());
+        Navigation.PushAsync(new vAgrergarEstudiante());
+    }
+
+    private void listaEstudiante_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem is estudiante ObjetoEstudiante)
+        {
+            Navigation.PushAsync(new vActualizarEliminar(ObjetoEstudiante));
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }

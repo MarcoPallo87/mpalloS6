@@ -3,52 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mpalloS6.Views.vEstudiante"
              Title="vEstudiante">
-    <VerticalStackLayout Padding="20" Spacing="20">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <Label 
-            Text="Semana 6: Servicios web - Estudiante"
-            VerticalOptions="Center" 
-            FontSize="20"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+            <Label 
+                Text="Semana 6: Servicios web - Estudiante"
+                VerticalOptions="Center" 
+                FontSize="20"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
 
-        <Grid BackgroundColor="LightPink" Padding="5" ColumnSpacing="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
+            <Grid BackgroundColor="LightPink" Padding="20" ColumnSpacing="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Text="Código" FontAttributes="Bold" TextColor="Black"/>
-            <Label Grid.Column="1" Text="Nombre" FontAttributes="Bold" TextColor="Black"/>
-            <Label Grid.Column="2" Text="Apellido" FontAttributes="Bold" TextColor="Black"/>
-            <Label Grid.Column="3" Text="Edad" FontAttributes="Bold" TextColor="Black"/>
-        </Grid>
+                <Label Grid.Column="0" Text="Código" FontAttributes="Bold" TextColor="Black"/>
+                <Label Grid.Column="1" Text="Nombre" FontAttributes="Bold" TextColor="Black"/>
+                <Label Grid.Column="2" Text="Apellido" FontAttributes="Bold" TextColor="Black"/>
+                <Label Grid.Column="3" Text="Edad" FontAttributes="Bold" TextColor="Black"/>
+            </Grid>
 
-        <CollectionView x:Name="listaEstudiante">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="5" ColumnSpacing="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="60"/>
-                        </Grid.ColumnDefinitions>
+            <ListView x:Name="listaEstudiante" ItemSelected="listaEstudiante_ItemSelected"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="20" ColumnSpacing="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Text="{Binding codigo}" VerticalOptions="Center"/>
-                        <Label Grid.Column="1" Text="{Binding nombre}" VerticalOptions="Center"/>
-                        <Label Grid.Column="2" Text="{Binding apellido}" VerticalOptions="Center"/>
-                        <Label Grid.Column="3" Text="{Binding edad}" VerticalOptions="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Label Grid.Column="0" Text="{Binding codigo}" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding nombre}" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding apellido}" VerticalOptions="Center"/>
+                                <Label Grid.Column="3" Text="{Binding edad}" VerticalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <Button x:Name="btnAgregarEstudiante"
-                Text="Agregar Estudiante"
-                Clicked="btnAgregarEstudiante_Clicked"/>
+            <Button x:Name="btnAgregarEstudiante"
+                    Text="Agregar Estudiante"
+                    Clicked="btnAgregarEstudiante_Clicked"/>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
