@@ -5,7 +5,9 @@
              Title="vEstudiante">
     
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <VerticalStackLayout BackgroundColor="LightCyan" Padding="20" Spacing="20">
+
+            <Image Source="angel.jpg" WidthRequest="200" HeightRequest="100" HorizontalOptions="Center"/>
 
             <Label 
                 Text="Semana 6: Servicios web - Estudiante"
@@ -14,7 +16,7 @@
                 FontAttributes="Bold"
                 HorizontalOptions="Center" />
 
-            <Grid BackgroundColor="LightPink" Padding="20" ColumnSpacing="20">
+            <Grid BackgroundColor="LightPink" Padding="15" ColumnSpacing="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="*"/>
@@ -33,7 +35,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="20" ColumnSpacing="20">
+                            <Grid Padding="40" ColumnSpacing="20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60"/>
                                     <ColumnDefinition Width="*"/>
